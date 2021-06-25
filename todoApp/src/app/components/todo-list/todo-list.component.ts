@@ -11,7 +11,7 @@ import { Todo } from 'src/app/models/todo.model';
 export class TodoListComponent implements OnInit {
   todos$!: Observable<Todo[]>;
 
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
     this.todos$ = this.todoService.todoServices$;
@@ -23,5 +23,9 @@ export class TodoListComponent implements OnInit {
 
   onEditTodo(todo: Todo) {
     this.todoService.editTodo(todo.id, todo.content);
+  }
+
+  onDeleteTodo(todo: Todo) {
+    this.todoService.deleteTodo(todo.id);
   }
 }
