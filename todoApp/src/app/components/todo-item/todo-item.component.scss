@@ -75,13 +75,13 @@
     width: 98.5%;
     height: 100%;
     background: white;
-
-    & input {
-      height: 92%;
-      width: 92%;
-      margin-left: 35px;
-      font-size: 18px;
-      padding-left: 10px;
-    }
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid red;
+  }
+  & input {
+    font-size: 20px;
+    padding-left: 10px;
+    font-weight: bold;
   }
 }
