@@ -12,13 +12,16 @@
     (changeMode)="onChangeMode($event)"
   ></app-dark-mode>
 
-  <div class="row justify-content-center w-100">
-    <div class="todo-wrapper p-0 d-flex flex-column col-md-6 col-sm-8">
-      <app-header></app-header>
-      <app-todo-list></app-todo-list>
-      <app-footer *ngIf="hasTodo$ | async"></app-footer>
+  <div class="container">
+    <div class="row justify-content-center w-100 m-0">
+      <div class="todo-wrapper p-0 d-flex flex-column col-md-8 col-sm-12">
+        <app-header></app-header>
+        <app-todo-list></app-todo-list>
+        <app-footer *ngIf="hasTodo$ | async"></app-footer>
+      </div>
     </div>
   </div>
+
   <small class="instruction text-center">
     <em
       >Press Enter to add new todo.<br />
