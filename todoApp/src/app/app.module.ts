@@ -10,6 +10,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoInputComponent } from './components/todo-input/todo-input.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DarkModeComponent } from './components/dark-mode/dark-mode.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FooterComponent } from './components/footer/footer.component';
     TodoInputComponent,
     HeaderComponent,
     FooterComponent,
+    DarkModeComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,9 +17,7 @@ export class TodoService {
   private lengthSubject: BehaviorSubject<number> = new BehaviorSubject<number>(
     0
   );
-  private todosSubject: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>(
-    []
-  );
+
   private displayTodoSubject: BehaviorSubject<Todo[]> = new BehaviorSubject<
     Todo[]
   >([]);

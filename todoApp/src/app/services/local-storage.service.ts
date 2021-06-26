@@ -22,7 +22,6 @@ export class LocalStorageService {
     if (!value) {
       return;
     }
-
     this.storage[key] = JSON.stringify(value);
   }
 
