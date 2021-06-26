@@ -3,6 +3,7 @@ import { TodoService } from './services/todo.service';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { DarkModeService } from './services/dark-mode.service';
+import { DarkMode } from './models/dark-mode.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,6 +11,7 @@ import { DarkModeService } from './services/dark-mode.service';
 })
 export class AppComponent {
   hasTodo$!: Observable<boolean>;
+  dark$!: Observable<DarkMode[]>;
 
   constructor(
     private todoService: TodoService,
@@ -22,5 +24,12 @@ export class AppComponent {
 
     this.todoService.fetchFromLocalStorage();
     this.hasTodo$ = this.todoService.length$.pipe(map((length) => length > 0));
+
+    this.darkModeService.fetch();
+    this.dark$ = this.darkModeService.isDark$;
+  }
+
+  onChangeMode(changeMode: boolean) {
+    this.darkModeService.changeMode(changeMode);
   }
 }

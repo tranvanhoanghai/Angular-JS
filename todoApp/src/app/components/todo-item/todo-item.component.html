@@ -15,8 +15,9 @@
     <label
       [@fadeStrikeThrough]="todo.isCompleted ? 'completed' : 'active'"
       [for]="todo.id"
-      >{{ todo.content }}</label
     >
+      {{ todo.content }}
+    </label>
   </div>
 
   <div class="d-flex align-items-center">

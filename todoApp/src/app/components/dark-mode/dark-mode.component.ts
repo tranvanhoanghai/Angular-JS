@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DarkModeService } from 'src/app/services/dark-mode.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DarkMode } from './../../models/dark-mode.model';
 
 @Component({
   selector: 'app-dark-mode',
@@ -8,21 +7,16 @@ import { DarkModeService } from 'src/app/services/dark-mode.service';
   styleUrls: ['./dark-mode.component.scss'],
 })
 export class DarkModeComponent implements OnInit {
-  dark$!: Observable<any>;
-  a = false;
-  constructor(private darkModeService: DarkModeService) {}
+  @Input() dark!: DarkMode;
+  @Output() changeMode: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  constructor() {}
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.darkModeService.fetch();
-
-    this.dark$ = this.darkModeService.isDark$;
-    console.log(this.a);
   }
 
   changeDarkMode() {
-    this.darkModeService.updateToLocalStorage(!this.a);
-    console.log('appppppppppppp', this.dark$);
+    this.changeMode.emit((this.dark.isDarkMode = !this.dark.isDarkMode));
   }
 }

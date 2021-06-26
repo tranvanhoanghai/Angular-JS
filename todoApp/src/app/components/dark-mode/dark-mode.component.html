@@ -3,7 +3,7 @@
     type="checkbox"
     id="toggle_checkbox"
     (change)="changeDarkMode()"
- 
+    [checked]="dark.isDarkMode"
   />
   <label class="mb-5 position-relative" for="toggle_checkbox">
     <div id="star">
