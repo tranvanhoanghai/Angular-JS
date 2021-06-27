@@ -47,14 +47,19 @@ export class AppComponent
     //console.log('ngOnDestroy');
   }
   ngAfterViewInit(): void {
-    //console.log('ngAfterViewInit');
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
   }
   ngAfterContentChecked(): void {
-    //console.log('ngAfterContentChecked');
+    //Called after every check of the component's or directive's content.
+    //Add 'implements AfterContentChecked' to the class.
   }
   ngAfterViewChecked(): void {
-    //console.log('ngAfterViewChecked');
+    //Called after every check of the component's view. Applies to components only.
+    //Add 'implements AfterViewChecked' to the class.
   }
+
+
 }
 
 // DataBinding
