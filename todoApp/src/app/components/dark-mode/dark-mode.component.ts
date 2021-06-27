@@ -7,7 +7,7 @@ import { DarkMode } from './../../models/dark-mode.model';
   styleUrls: ['./dark-mode.component.scss'],
 })
 export class DarkModeComponent implements OnInit {
-  @Input() dark!: DarkMode;
+  @Input() isDark!: boolean;
   @Output() changeMode: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {}
@@ -17,6 +17,6 @@ export class DarkModeComponent implements OnInit {
   }
 
   changeDarkMode() {
-    this.changeMode.emit((this.dark.isDarkMode = !this.dark.isDarkMode));
+    this.changeMode.emit((this.isDark = !this.isDark));
   }
 }

@@ -23,7 +23,7 @@ export class DarkModeService {
   fetch() {
     this.darkMode = this.storageService.getValue<DarkMode[]>(
       DarkModeService.DarkModeStorageKey
-    ) || [];
+    ) || [{}];
     this.updateTodosData();
   }
 

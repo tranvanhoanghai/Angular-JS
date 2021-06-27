@@ -11,7 +11,7 @@ import { DarkMode } from './models/dark-mode.model';
 })
 export class AppComponent {
   hasTodo$!: Observable<boolean>;
-  dark$!: Observable<DarkMode[]>;
+  isDark!: boolean;
 
   constructor(
     private todoService: TodoService,
@@ -26,7 +26,9 @@ export class AppComponent {
     this.hasTodo$ = this.todoService.length$.pipe(map((length) => length > 0));
 
     this.darkModeService.fetch();
-    this.dark$ = this.darkModeService.isDark$;
+    this.darkModeService.isDark$.subscribe((val) =>
+      val.map((isDark: any) => (this.isDark = isDark.isDarkMode))
+    );
   }
 
   onChangeMode(changeMode: boolean) {
