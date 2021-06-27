@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root', // global
 })
 export class DataService {
-  constructor() {}
+  constructor() { }
 
   private _textFromHelloSubject: BehaviorSubject<string> =
     new BehaviorSubject<string>('');
