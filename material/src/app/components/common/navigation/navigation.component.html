@@ -27,11 +27,21 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
 
-      <mat-slide-toggle (change)="changTheme($event)" [checked]="isDark"
-        >dark Mode
-      </mat-slide-toggle>
       <span>Material </span>
+
+      <div class="toggle" title="toggle dark mode">
+        <label>
+          <input
+            type="checkbox"
+            name=""
+            (change)="changTheme()"
+            [checked]="isDark"
+          />
+          <span></span>
+        </label>
+      </div>
     </mat-toolbar>
+
     <!-- Add Content Here -->
     <div class="content">
       <app-dashboard></app-dashboard>

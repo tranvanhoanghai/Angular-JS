@@ -8,9 +8,6 @@ import {
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { MatSelectionListChange } from '@angular/material/list';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { DarkMode } from './../../../models/dark-mode.model';
 
 @Component({
   selector: 'app-navigation',
@@ -30,8 +27,8 @@ export class NavigationComponent {
       shareReplay()
     );
 
-  changTheme({ checked }: MatSlideToggleChange) {
-    this.darkModeSwitched.emit(checked);
+  changTheme() {
+    this.darkModeSwitched.emit((this.isDark = !this.isDark));
   }
   constructor(private breakpointObserver: BreakpointObserver) {}
 }

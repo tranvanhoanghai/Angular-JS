@@ -13,16 +13,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { NavigationComponent } from './components/common/navigation/navigation.component';
 import { DashboardComponent } from './components/common/dashboard/dashboard.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { NavigationComponent } from './components/common/navigation/navigation.component';
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationComponent,
-    DashboardComponent,
-  ],
+  declarations: [AppComponent, NavigationComponent, DashboardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,9 +31,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    MatSlideToggleModule
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
