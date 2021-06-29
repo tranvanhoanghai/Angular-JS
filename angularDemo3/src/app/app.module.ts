@@ -1,7 +1,7 @@
 import { HelloComponent } from './components/hello/hello.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HiComponent } from './components/hi/hi.component';
@@ -17,6 +17,13 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ToastModule } from 'primeng/toast';
+
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 // @Decorator
 @NgModule({
@@ -32,8 +39,14 @@ import { ButtonModule } from 'primeng/button';
     PanelModule,
     RippleModule,
     ButtonModule,
+    ProgressSpinnerModule,
+    ToastModule,
+    ConfirmPopupModule,
+    BrowserAnimationsModule,
+    MessagesModule,
+    ConfirmDialogModule,
   ], // nhập module khác vào
-  providers: [DataService], // khai báo service
+  providers: [DataService, ConfirmationService, MessageService], // khai báo service
   bootstrap: [AppComponent],
 })
 export class AppModule {}

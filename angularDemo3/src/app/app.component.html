@@ -1,11 +1,12 @@
 <h1>{{ title }} " From app "</h1>
 
 <div style="max-height: 90vh; overflow: auto">
-  <form class="edit-form p-p-1" #userForm="ngForm">
+  <form class="edit-form p-p-2" #userForm="ngForm">
     <div class="p-fluid p-grid">
       <div class="p-field p-col-12 p-md-4">
         <span class="p-float-label">
           <input
+            required
             pInputText
             class="edit-form"
             type="text"
@@ -43,20 +44,32 @@
         </span>
       </div>
       <div class="p-field p-col-12 p-md-4">
-        <button class="p-button-success" type="submit" (click)="addProduct()" pButton type="button">
+        <button
+          class="p-button-success"
+          type="submit"
+          (click)="addProduct()"
+          pButton
+          type="button"
+        >
           {{ valBtn }}
         </button>
       </div>
     </div>
   </form>
 
+  <p-toast></p-toast>
+  <p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+  ></p-confirmDialog>
+
   <table>
     <thead>
       <tr>
-        <th>Id</th>
+        <th>#</th>
         <th>Name</th>
         <th>Price</th>
-        <!-- <th>image</th> -->
+        <th>image</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -66,9 +79,9 @@
         <td>{{ item.name }}</td>
 
         <td>{{ item.price }}</td>
-        <!-- <td>
+        <td>
           <img style="width: 100px" src="{{ item.image }}" alt="" />
-        </td> -->
+        </td>
         <td>
           <button
             class="p-m-1 p-button-success"
@@ -78,11 +91,12 @@
           >
             Update
           </button>
+
           <button
             class="p-m-1 p-button-danger"
-            (click)="deleteProduct(item.id)"
             pButton
             type="button"
+            (click)="deleteProduct(item.id)"
           >
             Delete
           </button>

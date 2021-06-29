@@ -2,11 +2,18 @@ import { Product } from './models/product.model';
 import { Observable } from 'rxjs';
 import { Component, SimpleChanges } from '@angular/core';
 import { DataService } from './services/data.service';
+import {
+  ConfirmationService,
+  MessageService,
+  PrimeNGConfig,
+} from 'primeng/api';
 
+import { Message } from 'primeng/api';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [ConfirmationService],
 })
 export class AppComponent {
   title = 'Crud basic';
@@ -19,13 +26,23 @@ export class AppComponent {
     price: '',
     image: '',
   };
-  constructor(private _dataService: DataService) {}
+
+  position!: string;
+
+  constructor(
+    private _dataService: DataService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    private primengConfig: PrimeNGConfig
+  ) {}
+
   clickFromHello(event: any) {
     this.title = event;
   }
 
   ngOnInit(): void {
     this.getProduct();
+    this.primengConfig.ripple = true;
   }
 
   getProduct() {
@@ -34,26 +51,50 @@ export class AppComponent {
 
   addProduct() {
     if (!this.isUpdate) {
-      this._dataService.add(this.product).subscribe((res) => this.getProduct());
-
-      this.product = {
-        name: '',
-        price: '',
-        image: '',
-      };
+      if (this.product.name && this.product.price && this.product.image) {
+        this._dataService.add(this.product).subscribe(
+          (res) => {
+            this.getProduct();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Add product success',
+            });
+          },
+          (err) => {
+            console.log('Something went wrong!', err);
+          }
+        );
+        this.product = {
+          name: '',
+          price: '',
+          image: '',
+        };
+      }
     } else {
-      this._dataService
-        .update(this.id, this.product)
-        .subscribe((res) => this.getProduct());
-      this.id = null;
-      this.isUpdate = false;
-      this.valBtn = 'Add';
-
-      this.product = {
-        name: '',
-        price: '',
-        image: '',
-      };
+      if (this.product.name && this.product.price && this.product.image) {
+        this._dataService.update(this.id, this.product).subscribe(
+          (res) => {
+            this.getProduct();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Update product success',
+            });
+          },
+          (err) => {
+            console.log('Something went wrong!', err);
+          }
+        );
+        this.id = null;
+        this.isUpdate = false;
+        this.valBtn = 'Add';
+        this.product = {
+          name: '',
+          price: '',
+          image: '',
+        };
+      }
     }
   }
 
@@ -70,7 +111,31 @@ export class AppComponent {
   }
 
   deleteProduct(id: any) {
-    this._dataService.delete(id).subscribe((res) => this.getProduct());
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this._dataService.delete(id).subscribe(
+          (res) => {
+            this.getProduct();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Delete success',
+            });
+          },
+          (err) => {
+            console.log('Something went wrong!', err);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'You have rejected',
+            });
+          }
+        );
+      },
+    });
   }
 }
 
