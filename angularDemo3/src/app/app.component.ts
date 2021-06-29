@@ -73,27 +73,39 @@ export class AppComponent {
       }
     } else {
       if (this.product.name && this.product.price && this.product.image) {
-        this._dataService.update(this.id, this.product).subscribe(
-          (res) => {
-            this.getProduct();
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Update product success',
-            });
+        this.confirmationService.confirm({
+          message: 'Are you sure that you want to proceed?',
+          header: 'Confirmation',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this._dataService.update(this.id, this.product).subscribe(
+              (res) => {
+                this.getProduct();
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Success',
+                  detail: 'Update success',
+                });
+                this.id = null;
+                this.isUpdate = false;
+                this.valBtn = 'Add';
+                this.product = {
+                  name: '',
+                  price: '',
+                  image: '',
+                };
+              },
+              (err) => {
+                console.log('Something went wrong!', err);
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error',
+                  detail: "Can't update",
+                });
+              }
+            );
           },
-          (err) => {
-            console.log('Something went wrong!', err);
-          }
-        );
-        this.id = null;
-        this.isUpdate = false;
-        this.valBtn = 'Add';
-        this.product = {
-          name: '',
-          price: '',
-          image: '',
-        };
+        });
       }
     }
   }
