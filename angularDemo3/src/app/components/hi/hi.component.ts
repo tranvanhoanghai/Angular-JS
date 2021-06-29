@@ -7,11 +7,12 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./hi.component.scss'],
 })
 export class HiComponent implements OnInit {
-  a!: string;
+  hiCpn!: string;
   constructor(private _dataService: DataService) {}
 
   ngOnInit(): void {
     // this.a = this._dataService.textFromHello;
-    this._dataService.textFromHello$.subscribe((text) => (this.a = text));
+    this._dataService.textFromHello$.subscribe((text) => (this.hiCpn = text));
+    // console.log(this._dataService.textFromHello$);
   }
 }

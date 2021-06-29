@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DarkMode } from './../../models/dark-mode.model';
-
 @Component({
   selector: 'app-dark-mode',
   templateUrl: './dark-mode.component.html',
