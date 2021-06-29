@@ -9,10 +9,11 @@ import { DataService } from './services/data.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Title App';
-  products$!: Observable<any>;
+  title = 'Crud basic';
   isUpdate = false;
   id = null;
+  products: any;
+  valBtn = 'Add';
   product = {
     name: '',
     price: '',
@@ -28,34 +29,38 @@ export class AppComponent {
   }
 
   getProduct() {
-    this.products$ = this._dataService.getAll();
+    this._dataService.getAll().subscribe((res) => (this.products = res));
   }
 
   addProduct() {
     if (!this.isUpdate) {
-      this._dataService.add(this.product).subscribe();
+      this._dataService.add(this.product).subscribe((res) => this.getProduct());
+
       this.product = {
         name: '',
         price: '',
         image: '',
       };
     } else {
-      this._dataService.update(this.id, this.product).subscribe();
+      this._dataService
+        .update(this.id, this.product)
+        .subscribe((res) => this.getProduct());
       this.id = null;
       this.isUpdate = false;
+      this.valBtn = 'Add';
 
       this.product = {
         name: '',
         price: '',
         image: '',
       };
-      this.getProduct();
     }
   }
 
   edit(id: any) {
     this.isUpdate = true;
     this.id = id;
+    this.valBtn = 'Update';
 
     this._dataService.getById(id).subscribe((response) => {
       this.product.name = response.name;
@@ -65,8 +70,7 @@ export class AppComponent {
   }
 
   deleteProduct(id: any) {
-    this._dataService.delete(id).subscribe();
-    this.getProduct();
+    this._dataService.delete(id).subscribe((res) => this.getProduct());
   }
 }
 

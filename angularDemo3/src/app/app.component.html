@@ -1,29 +1,53 @@
 <h1>{{ title }} " From app "</h1>
 
 <div style="max-height: 90vh; overflow: auto">
-  <form class="edit-form" (ngSubmit)="addProduct()">
-    <input
-      class="edit-form"
-      type="text"
-      name="name"
-      [(ngModel)]="product.name"
-      autocomplete="off"
-    />
-    <input
-      class="edit-form"
-      type="text"
-      name="price"
-      [(ngModel)]="product.price"
-      autocomplete="off"
-    />
-    <input
-      class="edit-form"
-      type="text"
-      name="image"
-      [(ngModel)]="product.image"
-      autocomplete="off"
-    />
-    <input class="edit-form" type="submit" name="editTodo" value="add" />
+  <form class="edit-form p-p-1" #userForm="ngForm">
+    <div class="p-fluid p-grid">
+      <div class="p-field p-col-12 p-md-4">
+        <span class="p-float-label">
+          <input
+            pInputText
+            class="edit-form"
+            type="text"
+            name="name"
+            [(ngModel)]="product.name"
+            autocomplete="off"
+          />
+          <label for="inputtext">Product Name</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-4">
+        <span class="p-float-label">
+          <input
+            pInputText
+            class="edit-form"
+            type="text"
+            name="price"
+            [(ngModel)]="product.price"
+            autocomplete="off"
+          />
+          <label for="inputtext-left">Product Price</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-4">
+        <span class="p-float-label">
+          <input
+            pInputText
+            class="edit-form"
+            type="text"
+            name="image"
+            [(ngModel)]="product.image"
+            autocomplete="off"
+          />
+          <label for="inputtext-right">Product image</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-4">
+        <button class="p-button-success" type="submit" (click)="addProduct()" pButton type="button">
+          {{ valBtn }}
+        </button>
+      </div>
+    </div>
   </form>
 
   <table>
@@ -32,22 +56,36 @@
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
-        <th>image</th>
+        <!-- <th>image</th> -->
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of products$ | async">
+      <tr *ngFor="let item of products">
         <td>{{ item.id }}</td>
         <td>{{ item.name }}</td>
 
         <td>{{ item.price }}</td>
-        <td>
+        <!-- <td>
           <img style="width: 100px" src="{{ item.image }}" alt="" />
-        </td>
+        </td> -->
         <td>
-          <button (click)="edit(item.id)">Update</button>
-          <button (click)="deleteProduct(item.id)">Delete</button>
+          <button
+            class="p-m-1 p-button-success"
+            (click)="edit(item.id)"
+            pButton
+            type="button"
+          >
+            Update
+          </button>
+          <button
+            class="p-m-1 p-button-danger"
+            (click)="deleteProduct(item.id)"
+            pButton
+            type="button"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>
