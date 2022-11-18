@@ -1,0 +1,27 @@
+<div id="app-wrapper">
+  <div id="sidebar" [ngClass]="{'open-sidebar': visibleSidebar}">
+
+    <app-sidebar-list></app-sidebar-list>
+
+
+  </div>
+
+
+  <div id="main-side">
+
+    <div id="header">
+      <button *ngIf="visibleSidebar" (click)="toggle()"
+              pButton type="button"
+              icon="pi pi-angle-left"
+              class="p-button-text"></button>
+      <button *ngIf="!visibleSidebar" (click)="toggle()"
+              pButton type="button"
+              icon="pi pi-align-justify"
+              class="p-button-text"></button>
+    </div>
+
+    <div id="main">
+
+    </div>
+  </div>
+</div>

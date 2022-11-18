@@ -1,0 +1,37 @@
+.sidebar-section-item {
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    cursor: pointer;
+
+
+    .sidebar-section-item-link {
+        padding: 8px 16px;
+        width: 100%;
+        display: flex;
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        align-items: center;
+
+        .sidebar-section-item-icon {
+            flex-shrink: 0;
+            display: inline-flex;
+            min-width: 40px;
+        }
+
+        .sidebar-section-item-title {
+            flex: 1 1 auto;
+            min-width: 0px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+    }
+}
